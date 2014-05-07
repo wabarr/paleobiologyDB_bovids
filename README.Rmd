@@ -25,7 +25,7 @@ head(bovidae)
 ```
 
 ## Map the bovids
-```{r map}
+```{r map, fig.width=15}
 pbdb_map(bovidae)
 ```
 
