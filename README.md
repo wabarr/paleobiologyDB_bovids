@@ -8,40 +8,11 @@ Preliminary loading of required packages.
 
 ```r
 library(devtools)
-```
 
-```
-## 
-## Attaching package: 'devtools'
-## 
-## The following objects are masked from 'package:utils':
-## 
-##     ?, help
-## 
-## The following object is masked from 'package:base':
-## 
-##     system.file
-```
-
-```r
-install_github("ropensci/paleobioDB")
-```
-
-```
-## Installing github repo paleobioDB/master from ropensci
-## Downloading master.zip from https://github.com/ropensci/paleobioDB/archive/master.zip
-## Installing package from /var/folders/_c/4xbzq_190w9fy55wy8d_n_2n9hlngy/T//RtmpmnDyq8/master.zip
-## arguments 'minimized' and 'invisible' are for Windows only
-## Installing paleobioDB
-## Installing dependencies for paleobioDB:
-```
-
-```
-## Error: trying to use CRAN without setting a mirror
-```
-
-```r
-library(paleobioDB)
+if (!require(paleobioDB)) {
+    install_github("ropensci/paleobioDB")
+    library(paleobioDB)
+}
 ```
 
 
@@ -100,10 +71,11 @@ Plot the number of subtaxa in the data set
 pbdb_subtaxa(bovidae, do.plot = TRUE)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+![plot of chunk plotsubtaxa](figure/plotsubtaxa.png) 
 
 ```
 ##   species genera families orders classes phyla
 ## 1     164     86        1      1       1     1
 ```
+
 

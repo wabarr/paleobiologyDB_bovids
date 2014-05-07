@@ -5,15 +5,18 @@ paleobiologyDB
 
 Preliminary loading of required packages.  
 
-```{r}
+```{r load, warning=FALSE,message=FALSE}
 library(devtools)
-install_github("ropensci/paleobioDB")
-library(paleobioDB)
+
+if (!require(paleobioDB)) {
+  install_github("ropensci/paleobioDB")
+  library(paleobioDB)
+                         }
 ```
 
 Now we get all PaleobioDB occurrences for Quaternary bovids.  
 
-```{r cache=TRUE}
+```{r getdata, cache=TRUE}
 bovidae <-  pbdb_occurrences (limit="all",
                                base_name="bovidae", 
                                interval="Quaternary",             
@@ -23,6 +26,7 @@ head(bovidae)
 
 Plot the number of subtaxa in the data set 
 
-```{r, cache=TRUE}
+```{r plotsubtaxa, cache=TRUE}
 pbdb_subtaxa (bovidae, do.plot=TRUE)  
 ```
+
