@@ -8,6 +8,7 @@ Preliminary loading of required packages.
 ```{r load, warning=FALSE,message=FALSE}
 library(devtools)
 library(maps)
+library(raster)
 if (!require(paleobioDB)) {
   install_github("ropensci/paleobioDB")
   library(paleobioDB)
@@ -25,19 +26,43 @@ head(bovidae)
 ```
 
 ## Map the bovids
+
 ```{r map, fig.width=15}
 pbdb_map(bovidae)
 ```
 
-Plot the number of subtaxa in the data set 
+## Map the richness
+
+```{r richness, fig.width=15}
+pbdb_map_richness (bovidae, res= 3, rank="species")
+```
+
+## Map sampling effort
+
+```{r samplingeffort, fig.width=15}
+pbdb_map_occur (bovidae, res= 2)
+```
+
+
+## Plot the number of subtaxa in the data set 
 
 ```{r plotsubtaxa, cache=TRUE}
 pbdb_subtaxa (bovidae, do.plot=TRUE)  
 ```
 
+## Origins and Extinctions
+```{r origextinct, fig.width = 15}
+pbdb_orig_ext (bovidae, rank="species", orig_ext=1, temporal_extent=c(0,10), res=1)
+pbdb_orig_ext (bovidae, rank="species", orig_ext=2, temporal_extent=c(0,10), res=1)
+```
+
+## Temporal resolution
+
 ```{r temporalres}
 pbdb_temporal_resolution (bovidae)
 ```
+
+## Temporal range
 
 ```{r temporalrange}
 pbdb_temp_range (bovidae, rank="species")

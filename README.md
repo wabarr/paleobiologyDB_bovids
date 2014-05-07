@@ -9,6 +9,7 @@ Preliminary loading of required packages.
 ```r
 library(devtools)
 library(maps)
+library(raster)
 if (!require(paleobioDB)) {
     install_github("ropensci/paleobioDB")
     library(paleobioDB)
@@ -66,6 +67,7 @@ head(bovidae)
 
 ## Map the bovids
 
+
 ```r
 pbdb_map(bovidae)
 ```
@@ -73,7 +75,50 @@ pbdb_map(bovidae)
 ![plot of chunk map](figure/map.png) 
 
 
-Plot the number of subtaxa in the data set 
+## Map the richness
+
+
+```r
+pbdb_map_richness(bovidae, res = 3, rank = "species")
+```
+
+![plot of chunk richness](figure/richness1.png) ![plot of chunk richness](figure/richness2.png) 
+
+```
+## class       : RasterLayer 
+## dimensions  : 56, 123, 6888  (nrow, ncol, ncell)
+## resolution  : 3, 3  (x, y)
+## extent      : -180, 189, -84.43, 83.57  (xmin, xmax, ymin, ymax)
+## coord. ref. : NA 
+## data source : in memory
+## names       : layer 
+## values      : 1, 36  (min, max)
+```
+
+
+## Map sampling effort
+
+
+```r
+pbdb_map_occur(bovidae, res = 2)
+```
+
+![plot of chunk samplingeffort](figure/samplingeffort1.png) ![plot of chunk samplingeffort](figure/samplingeffort2.png) 
+
+```
+## class       : RasterLayer 
+## dimensions  : 85, 185, 15725  (nrow, ncol, ncell)
+## resolution  : 2, 2  (x, y)
+## extent      : -180, 190, -86.43, 83.57  (xmin, xmax, ymin, ymax)
+## coord. ref. : NA 
+## data source : in memory
+## names       : layer 
+## values      : 1, 698  (min, max)
+```
+
+
+
+## Plot the number of subtaxa in the data set 
 
 
 ```r
@@ -87,6 +132,51 @@ pbdb_subtaxa(bovidae, do.plot = TRUE)
 ## 1     164     86        1      1       1     1
 ```
 
+
+## Origins and Extinctions
+
+```r
+pbdb_orig_ext(bovidae, rank = "species", orig_ext = 1, temporal_extent = c(0, 
+    10), res = 1)
+```
+
+![plot of chunk origextinct](figure/origextinct1.png) 
+
+```
+##             new ext
+## 1-2 to 0-1    0  57
+## 2-3 to 1-2   73   2
+## 3-4 to 2-3    5   0
+## 4-5 to 3-4    2   0
+## 5-6 to 4-5   36   0
+## 6-7 to 5-6    0   0
+## 7-8 to 6-7    2   0
+## 8-9 to 7-8    0   0
+## 9-10 to 8-9   0   0
+```
+
+```r
+pbdb_orig_ext(bovidae, rank = "species", orig_ext = 2, temporal_extent = c(0, 
+    10), res = 1)
+```
+
+![plot of chunk origextinct](figure/origextinct2.png) 
+
+```
+##             new ext
+## 1-2 to 0-1    0  57
+## 2-3 to 1-2   73   2
+## 3-4 to 2-3    5   0
+## 4-5 to 3-4    2   0
+## 5-6 to 4-5   36   0
+## 6-7 to 5-6    0   0
+## 7-8 to 6-7    2   0
+## 8-9 to 7-8    0   0
+## 9-10 to 8-9   0   0
+```
+
+
+## Temporal resolution
 
 
 ```r
@@ -615,6 +705,8 @@ pbdb_temporal_resolution(bovidae)
 ## [4089]  0.1143  0.1143
 ```
 
+
+## Temporal range
 
 
 ```r
