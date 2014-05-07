@@ -7,7 +7,7 @@ Preliminary loading of required packages.
 
 ```{r load, warning=FALSE,message=FALSE}
 library(devtools)
-
+library(maps)
 if (!require(paleobioDB)) {
   install_github("ropensci/paleobioDB")
   library(paleobioDB)
@@ -24,9 +24,21 @@ bovidae <-  pbdb_occurrences (limit="all",
 head(bovidae)
 ```
 
+## Map the bovids
+```{r map}
+pbdb_map(bovidae)
+```
+
 Plot the number of subtaxa in the data set 
 
 ```{r plotsubtaxa, cache=TRUE}
 pbdb_subtaxa (bovidae, do.plot=TRUE)  
 ```
 
+```{r temporalres}
+pbdb_temporal_resolution (bovidae)
+```
+
+```{r temporalrange}
+pbdb_temp_range (bovidae, rank="species")
+```
