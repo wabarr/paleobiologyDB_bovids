@@ -1,0 +1,28 @@
+paleobiologyDB
+==============
+
+## Exploring the new R API to the paleobiologyDB.
+
+Preliminary loading of required packages.  
+
+```{r}
+library(devtools)
+install_github("ropensci/paleobioDB")
+library(paleobioDB)
+```
+
+Now we get all PaleobioDB occurrences for Quaternary bovids.  
+
+```{r cache=TRUE}
+bovidae <-  pbdb_occurrences (limit="all",
+                               base_name="bovidae", 
+                               interval="Quaternary",             
+                               show=c("coords", "phylo", "ident"))
+head(bovidae)
+```
+
+Plot the number of subtaxa in the data set 
+
+```{r, cache=TRUE}
+pbdb_subtaxa (bovidae, do.plot=TRUE)  
+```
