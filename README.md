@@ -82,7 +82,7 @@ pbdb_map(bovidae)
 pbdb_map_richness(bovidae, res = 3, rank = "species")
 ```
 
-![plot of chunk richness](figure/richness1.png) ![plot of chunk richness](figure/richness2.png) 
+![plot of chunk richness](figure/richness2.png) 
 
 ```
 ## class       : RasterLayer 
@@ -103,7 +103,7 @@ pbdb_map_richness(bovidae, res = 3, rank = "species")
 pbdb_map_occur(bovidae, res = 2)
 ```
 
-![plot of chunk samplingeffort](figure/samplingeffort1.png) ![plot of chunk samplingeffort](figure/samplingeffort2.png) 
+![plot of chunk samplingeffort](figure/samplingeffort2.png) 
 
 ```
 ## class       : RasterLayer 
